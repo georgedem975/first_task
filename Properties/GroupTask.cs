@@ -5,60 +5,60 @@ namespace ConsoleApplication1.Properties
 {
     public class GroupTask : AbstractTask
     {
-        private static int count = 0;
-        private const int TASKID = 3;
+        private static int s_Count;
+        private const int Taskid = 3;
         
-        public GroupTask(String name, String info)
+        public GroupTask(string name, string info)
         {
-            this.id.setTaskId(TASKID);
-            this.id.setId(count);
-            count++;
-            this.info = info;
-            this.name = name;
+            Id.SetTaskId(Taskid);
+            Id.SetId(s_Count);
+            s_Count++;
+            Info = info;
+            Name = name;
         }
 
-        public String getName()
+        public string GetName()
         {
-            return this.name;
+            return Name;
         }
 
-        public String getInfo()
+        public string GetInfo()
         {
-            return this.info;
+            return Info;
         }
 
-        public int countTasks()
+        public int CountTasks()
         {
-            return this._tasks.Count;
+            return _tasks.Count;
         }
 
-        public void add(String name)
+        public void Add(string name)
         {
-            this._tasks.Add(name);
+            _tasks.Add(name);
         }
 
-        public String getTaskName(int index)
+        public string GetTaskName(int index)
         {
-            return this._tasks[index];
+            return _tasks[index];
         }
 
-        public void print()
+        public void Print()
         {
             Console.Out.WriteLine("Group");
-            Console.Out.Write("name: " + this.name + "    info: " + this.info + "\n" + "Tasks:\n");
-            for (int i = 0; i < this.countTasks(); i++)
+            Console.Out.Write($"name: {this.Name}    info: {this.Info}\nTasks:\n");
+            for (int i = 0; i < CountTasks(); i++)
             {
-                Console.Out.WriteLine("     " + _tasks[i]);
+                Console.Out.WriteLine($"     {_tasks[i]}");
             }
         }
 
-        public void delete(String name)
+        public void Delete(string name)
         {
-            for (int i = 0; i < this.countTasks(); i++)
+            for (int i = 0; i < CountTasks(); i++)
             {
-                if (this._tasks[i] == name)
+                if (_tasks[i] == name)
                 {
-                    this._tasks.RemoveAt(i);
+                    _tasks.RemoveAt(i);
                 }
             }
         }

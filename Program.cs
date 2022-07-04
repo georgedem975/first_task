@@ -2,12 +2,11 @@
 
 namespace ConsoleApplication1
 {
-    internal class Program
+    internal static class Program
     {
         public static void Main(string[] args)
         {
-            Reader reader = new Reader();
-            reader.read();
+            Reader.Read();
         }
     }
 }

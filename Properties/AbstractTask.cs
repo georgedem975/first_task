@@ -1,17 +1,15 @@
-﻿using System;
-
-namespace ConsoleApplication1.Properties
+﻿namespace ConsoleApplication1.Properties
 {
-    public abstract class AbstractTask
+    public class AbstractTask
     {
-        protected String name;
-        protected String info;
-        protected ID id;
-        protected Condition _condition = Condition.NOTCOMPLETED;
+        protected string Name;
+        protected string Info;
+        protected Id Id;
+        protected Condition TaskCondition = Condition.Notcompleted;
         protected enum Condition
         {
-            DONE,
-            NOTCOMPLETED
+            Done,
+            Notcompleted
         }
     }
 }

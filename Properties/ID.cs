@@ -1,34 +1,34 @@
 ﻿namespace ConsoleApplication1.Properties
 {
-    public struct ID
+    public struct Id
     {
-        public ID(int id, int taskId)
+        public Id(int id, int taskId)
         {
-            this.id = id;
-            this.taskId = taskId;
+            _id = id;
+            _taskId = taskId;
         }
 
-        public int getId()
+        public int GetId()
         {
-            return this.id;
+            return _id;
         }
 
-        public int getTaskId()
+        public int GetTaskId()
         {
-            return this.taskId;
+            return _taskId;
         }
 
-        public void setId(int id)
+        public void SetId(int id)
         {
-            this.id = id;
+            _id = id;
         }
 
-        public void setTaskId(int taskId)
+        public void SetTaskId(int taskId)
         {
-            this.taskId = taskId;
+            _taskId = taskId;
         }
         
-        private int id;
-        private int taskId;
+        private int _id;
+        private int _taskId;
     }
 }

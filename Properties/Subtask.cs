@@ -5,48 +5,43 @@ namespace ConsoleApplication1.Properties
     public class Subtask : AbstractTask
     {
         
-        private static int count = 0;
-        private const int TASKID = 2;
+        private static int s_count = 0;
+        private const int Taskid = 2;
         
         public Subtask(String name, String info)
         {
-            this.id.setTaskId(TASKID);
-            this.id.setId(count);
-            count++;
-            this.info = info;
-            this.name = name;
+            this.Id.SetTaskId(Taskid);
+            this.Id.SetId(s_count);
+            s_count++;
+            this.Info = info;
+            this.Name = name;
         }
         
-        public void doneCondition()
+        public void DoneCondition()
         {
-            this._condition = Condition.DONE;
+            this.TaskCondition = Condition.Done;
         }
 
-        public void notCompletedCondition()
+        public String GetName()
         {
-            this._condition = Condition.NOTCOMPLETED;
+            return this.Name;
         }
 
-        public String getName()
+        public String GetInfo()
         {
-            return this.name;
+            return this.Info;
         }
 
-        public String getInfo()
+        public int GetCount()
         {
-            return this.info;
+            return s_count;
         }
 
-        public int getCount()
+        public String Print()
         {
-            return count;
-        }
-
-        public String print()
-        {
-            String str = "Subtask:\nname: " + this.name + "    info: " + this.info + "\nid:" + TASKID.ToString() + "." +
-                   id.getId().ToString() + "\n";
-            if (this._condition == Condition.DONE)
+            String str = "Subtask:\nname: " + this.Name + "    info: " + this.Info + "\nid:" + Taskid.ToString() + "." +
+                   Id.GetId().ToString() + "\n";
+            if (this.TaskCondition == Condition.Done)
             {
                 return str + "done";
             }

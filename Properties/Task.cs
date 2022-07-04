@@ -5,37 +5,37 @@ namespace ConsoleApplication1.Properties
 {
     public class Task : AbstractTask
     {
-        private static int count = 0;
-        private const int TASKID = 1;
+        private static int _count;
+        private const int Taskid = 1;
 
-        private Date _date;
-        private bool haveDate = false;
+        private DateTime _date;
+        private readonly bool _haveDate;
 
-        private List<Subtask> _subtasks = new List<Subtask>();
+        private readonly List<Subtask> _subtasks = new List<Subtask>();
 
-        public Task(String name, String info)
+        public Task(string name, string info)
         {
-            this.id.setTaskId(TASKID);
-            this.id.setId(count);
-            count++;
-            this.info = info;
-            this.name = name;
+            Id.SetTaskId(Taskid);
+            Id.SetId(_count);
+            _count++;
+            Info = info;
+            Name = name;
         }
 
-        public Task(String name, String info, int day, int month, int year)
+        public Task(string name, string info, int day, int month, int year)
         {
-            this.id.setTaskId(TASKID);
-            this.id.setId(count);
-            count++;
-            this.info = info;
-            this.name = name;
-            this._date = new Date(day, month, year);
-            this.haveDate = true;
+            Id.SetTaskId(Taskid);
+            Id.SetId(_count);
+            _count++;
+            Info = info;
+            Name = name;
+            _date = new DateTime(year, month, day);
+            _haveDate = true;
         }
 
-        public bool conditionIsDone()
+        public bool ConditionIsDone()
         {
-            if (this._condition == Condition.DONE)
+            if (TaskCondition == Condition.Done)
             {
                 return true;
             }
@@ -43,89 +43,70 @@ namespace ConsoleApplication1.Properties
             return false;
         }
 
-        public bool isToday(int day, int month, int year)
+        public bool IsToday(int day, int month, int year)
         {
-            if (!haveDate)
+            if (!_haveDate)
             {
                 return false;
             }
 
-            if (this._date.getDay() == day && this._date.getMonth() == month && this._date.getYear() == year)
+            return _date.Day == day && _date.Month == month && _date.Year == year;
+        }
+
+        public void DoneCondition()
+        {
+            TaskCondition = Condition.Done;
+        }
+
+        public Id GetId()
+        {
+            return Id;
+        }
+
+        public string GetName()
+        {
+            return Name;
+        }
+
+        public string GetInfo()
+        {
+            return Info;
+        }
+
+        public string Information()
+        {
+            var str = "Task:\nname: " + this.Name + "    info: " + this.Info;
+            var identification = "\nid: " + this.Id.GetTaskId().ToString() + "." + this.Id.GetId().ToString();
+            const string completed = "\ncompleted";
+            const string notCompleted = "\nnot completed";
+            if (_haveDate)
             {
-                return true;
+                if (ConditionIsDone())
+                {
+                    return str + identification + completed + "\n" + this._date.GetDate();
+                }
+                return str + identification + notCompleted + "\n" + this._date.GetDate();
             }
-
-            return false;
-        }
-
-        public void doneCondition()
-        {
-            this._condition = Condition.DONE;
-        }
-
-        public void notCompletedCondition()
-        {
-            this._condition = Condition.NOTCOMPLETED;
-        }
-
-        public ID GetId()
-        {
-            return this.id;
-        }
-
-        public String getName()
-        {
-            return this.name;
-        }
-
-        public String getInfo()
-        {
-            return this.info;
-        }
-
-        public String information()
-        {
-            String str = "Task:\nname: " + this.name + "    info: " + this.info;
-            String identificator = "\nid: " + this.id.getTaskId().ToString() + "." + this.id.getId().ToString();
-            String completed = "\ncompleted";
-            String notCompleted = "\nnot completed";
-            if (haveDate)
+            if (this.ConditionIsDone())
             {
-                if (this.conditionIsDone())
-                {
-                    return str + identificator + completed + "\n" + this._date.getDate();
-                }
-                else
-                {
-                    return str + identificator + notCompleted + "\n" + this._date.getDate();
-                }
+                return str + identification + completed + "\ndate: none";
             }
-            else
-            {
-                if (this.conditionIsDone())
-                {
-                    return str + identificator + completed + "\ndate: none";
-                }
-                else
-                {
-                    return str + identificator + notCompleted + "\ndate: none";
-                }
-            }
+            return str + identification + notCompleted + "\ndate: none";
         }
 
-        public void addSubtask(Subtask temp)
+        public void AddSubtask(Subtask temp)
         {
-            this._subtasks.Add(temp);
+            _subtasks.Add(temp);
         }
 
-        public int getCountSubtask()
+        public int GetCountSubtask()
         {
-            return this._subtasks.Count;
+            return _subtasks.Count;
         }
 
         public Subtask GetSubtask(int index)
         {
-            return this._subtasks[index];
+            return _subtasks[index];
         }
         
     }
